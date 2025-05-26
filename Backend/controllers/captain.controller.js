@@ -61,11 +61,19 @@ module.exports.getCaptainProfile = async (req, res) => {
 }
 
 module.exports.logoutCaptain = async (req, res) => {
+    res.clearCookie('token');
     const token = req.cookies.token || req.headers.authorization?.split(" ")[1];
     if (!token) {
-        return res.status(401).json({ message: 'Unauthorized' });
+        return res.status(400).json({ message: 'Unauthorized' });
     }
-    await BlackListTokenModel.create({ token });
-    res.clearCookie('token');
+    try {
+        // Try to insert, but ignore duplicate key error
+        await BlackListTokenModel.create({ token });
+    } catch (err) {
+        if (err.code !== 11000) { // 11000 is duplicate key error code
+            return res.status(500).json({ message: 'Internal server error' });
+        }
+        // If duplicate, just continue
+    }
     res.status(200).json({ message: 'Logged out successfully' });
 }
