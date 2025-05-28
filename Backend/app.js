@@ -7,6 +7,7 @@ const connectDB = require('./db/db');
 const mongoose = require('mongoose');
 const userRoutes = require('./routes/user.routes');
 const captainRoutes = require('./routes/captain.routes');
+const mapsRoutes = require('./routes/maps.routes');
 const cookieParser = require('cookie-parser');
 
 connectDB();
@@ -22,5 +23,6 @@ app.get('/', (req, res) => {
 
 app.use('/api/users', userRoutes);
 app.use('/api/captains', captainRoutes);
+app.use('/api/maps', mapsRoutes);
 
 module.exports = app;

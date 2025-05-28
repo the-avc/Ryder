@@ -8,7 +8,8 @@ const LocationPanel = () => {
                     <i className='ri-map-pin-fill'></i>
                 </h2>
                 <h4 className='font-mediu'>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, aliquid ad!
+                    Lorem ipsum dolor sit amet consjfjrghergiuerhguirweuighiudvhbsbvbsbfvsdfgsh
+                    shfshhswhfghsuirtiursyteeuyuietytectetur adipisicing elit. Quia, aliquid ad!
                 </h4>
             </div>
 
