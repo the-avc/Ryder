@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-hot-toast'
 
 const UserLogout = () => {
     const token = localStorage.getItem('token')
@@ -14,10 +15,12 @@ const UserLogout = () => {
         }).then((res) => {
             if (res.status === 200) {
                 localStorage.removeItem('token');
+                toast.success('Logged out successfully');
                 navigate('/login');
                 // console.log('User logged out successfully');
             }
         }).catch((error) => {
+            toast.error(error.response?.data?.message || 'Logout failed');
             console.error(error.response?.data || error.message);
         });
     }, [token, navigate]);

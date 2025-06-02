@@ -13,10 +13,12 @@ import CaptainHome from './pages/CaptainHome'
 import CaptainProtector from './pages/CaptainProtector'   
 import Riding from './pages/Riding'
 import CaptainRiding from './pages/CaptainRiding'
+import ErrorPage from './pages/ErrorPage'
+import { Toaster } from 'react-hot-toast'
 
 const App = () => {
   return (
-    <div >
+    <>
       <Routes>
         <Route path='/' element={<Start />} />
         <Route path='/login' element={<UserLogin />} />
@@ -50,8 +52,10 @@ const App = () => {
             <CaptainHome />
           </CaptainProtector>
         } />
+        <Route path='*' element={<ErrorPage />} />
       </Routes>
-    </div>
+      <Toaster position="top-center" />
+    </>
   )
 }
 

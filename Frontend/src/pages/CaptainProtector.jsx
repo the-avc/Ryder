@@ -7,7 +7,7 @@ import { useState } from 'react';
 const CaptainProtector = ({ children }) => {
     const token = localStorage.getItem('token');
     const navigate = useNavigate();
-    const [ isLoading, setIsLoading ] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
 

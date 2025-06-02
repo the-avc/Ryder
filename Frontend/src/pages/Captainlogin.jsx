@@ -4,6 +4,7 @@ import { UserDataContext } from '../context/UserContext'
 import axios from 'axios'
 import { CaptainDataContext } from '../context/CaptainContext'
 import logo from '../assets/RyderC.png'
+import { toast } from 'react-hot-toast'
 
 const CaptainLogin = () => {
     const [email, setEmail] = useState('')
@@ -26,9 +27,11 @@ const CaptainLogin = () => {
                 const data = res.data
                 setCaptain(data.captain)
                 localStorage.setItem('token', data.token)
+                toast.success('Login successful!')
                 navigate('/captain-home')
             }
         } catch (error) {
+            toast.error(error.response?.data?.message || 'Invalid credentials')
             console.error(error.response?.data || error.message)
         }
 

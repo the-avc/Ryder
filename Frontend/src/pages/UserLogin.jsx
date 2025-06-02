@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { UserDataContext } from '../context/UserContext'
 import axios from 'axios'
 import logo from '../assets/Ryder.png'
+import { toast } from 'react-hot-toast'
 
 const UserLogin = () => {
     const [email, setEmail] = useState('')
@@ -21,10 +22,13 @@ const UserLogin = () => {
             if (res.status === 200) {
                 const data = res.data
                 setUser(data.user)
+                // console.log(data)
                 localStorage.setItem('token', data.token)
+                toast.success('Login successfull !')
                 navigate('/home')
             }
         } catch (error) {
+            toast.error(error.response?.data?.message || 'Invalid credentials')
             console.error(error.response?.data || error.message)
         }
 

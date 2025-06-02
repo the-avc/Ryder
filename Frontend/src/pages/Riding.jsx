@@ -5,7 +5,7 @@ import tempImg from '../assets/uber.gif'
 const Riding = () => {
     return (
         <div className='h-screen '>
-            <Link to='/home' className='fixed h-10 w-10 right-2 top-2 bg-white flex items-center justify-center rounded-full'> 
+            <Link to='/home' className='fixed h-10 w-10 right-2 top-2 bg-white flex items-center justify-center rounded-full'>
                 <i className=" text-lg font-medium ri-home-5-line"></i>
             </Link>
             <div className='h-1/2' >
@@ -23,7 +23,7 @@ const Riding = () => {
                 </div>
                 <div className='flex flex-col gap-2 justufy-between items-center '>
                     <div className='w-full mt-5'>
-                        
+
                         <div className='flex items-center gap-5 p-3 border-b-2 border-gray-300'>
                             <i className=' text-xl ri-map-pin-2-fill' > </i>
                             <div >
@@ -41,9 +41,9 @@ const Riding = () => {
                     </div>
                 </div>
                 <button
-         className='w-full mt-5 bg-green-600 text-white font-semibold text-lg p-2 rounded-lg '>
-         Make a Payment
-        </button>
+                    className='w-full mt-5 bg-green-600 text-white font-semibold text-lg p-2 rounded-lg '>
+                    Make a Payment
+                </button>
 
 
             </div>

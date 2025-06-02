@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { UserDataContext } from '../context/UserContext'
 import logo from '../assets/Ryder.png'
+import { toast } from 'react-hot-toast'
 
 const UserSignup = () => {
    const [email, setEmail] = useState('')
@@ -31,9 +32,11 @@ const UserSignup = () => {
             const data = res.data;
             setUser(data.user);
             localStorage.setItem('token', data.token);
+            toast.success('Signup successful!');
             navigate('/home');
          }
       } catch (error) {
+      toast.error(error.response?.data?.message || 'Signup failed');
          console.error(error.response?.data || error.message);
       }
 
