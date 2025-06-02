@@ -90,7 +90,7 @@ const Home = () => {
     }
   }, [vehicleFound])
 
-  useGSAP(function () {
+ useGSAP(function () {
     if (waitingForDriver) {
       gsap.to(waitingForDriverRef.current, {
         transform: 'translateY(0)'
@@ -100,7 +100,7 @@ const Home = () => {
         transform: 'translateY(100%)'
       })
     }
-  }, [waitingForDriver])
+  }, [waitingForDriver]) 
 
 
 
@@ -178,8 +178,8 @@ const Home = () => {
       <div ref={vehicleFoundRef} className='w-full fixed z-10 bottom-0 translate-y-full bg-white p-3 py-6 px-3 pt-12'>
         <LookingForDriver setVehicleFound={setVehicleFound} />
       </div>
-      <div ref={waitingForDriverRef} className='w-full fixed z-10 bottom-0  bg-white p-3 py-6 px-3 pt-12'>
-        <WaitingForDriver waitingForDriver={waitingForDriver} />
+      <div ref={waitingForDriverRef} className='w-full fixed z-10 bottom-0 translate-y-full bg-white p-3 py-6 px-3 pt-12'>
+        <WaitingForDriver waitingForDriver={waitingForDriver}  />
       </div>
     </div>
   )

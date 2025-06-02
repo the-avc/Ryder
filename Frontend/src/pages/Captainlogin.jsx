@@ -8,81 +8,85 @@ import logo from '../assets/RyderC.png'
 const CaptainLogin = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [showPassword, setShowPassword] = useState(false)
     const [captainData, setCaptainData] = useState({})
-    const { captain, setCaptain } = useContext(CaptainDataContext);
+    const { captain, setCaptain } = useContext(CaptainDataContext)
     const navigate = useNavigate()
 
     const submitHandler = async (e) => {
-        e.preventDefault();
-        // setCaptainData({
-        //     email: email,
-        //     password: password
-        // })
+        e.preventDefault()
         const captainCredentials = {
-            email: email,
-            password: password
+            email,
+            password
         }
 
-        const res = await axios.post(`${import.meta.env.VITE_BASE_URL}/captains/login`, captainCredentials)
-            .then((res) => {
-                if (res.status === 200) {
-                    const data = res.data;
-                    setCaptain(data.captain);
-                    localStorage.setItem('token', data.token);
-                    navigate('/captain-home');
-                }
-            })
-            .catch((error) => {
-                console.error(error.response?.data || error.message);
-            });
+        try {
+            const res = await axios.post(`${import.meta.env.VITE_BASE_URL}/captains/login`, captainCredentials)
+            if (res.status === 200) {
+                const data = res.data
+                setCaptain(data.captain)
+                localStorage.setItem('token', data.token)
+                navigate('/captain-home')
+            }
+        } catch (error) {
+            console.error(error.response?.data || error.message)
+        }
 
         setEmail('')
         setPassword('')
     }
-    return (
 
+    return (
         <div className='p-7 h-screen flex flex-col justify-between'>
             <div>
                 <img className='w-26 mb-5' src={logo} alt="" />
-                {/* <img className='w-16 mb-10' src="https://1000logos.net/wp-content/uploads/2021/04/Uber-logo.png" alt="" /> */}
 
-                <form onSubmit={(e) => {
-                    submitHandler(e)
-
-                }}>
+                <form onSubmit={submitHandler}>
                     <h3 className='text-lg font-medium mb-2'>What's your email</h3>
-                    <input required
+                    <input
+                        required
                         value={email}
-                        onChange={(e) => {
-                            setEmail(e.target.value)
-                        }}
+                        onChange={(e) => setEmail(e.target.value)}
                         className='bg-[#eeeeee] mb-7 rounded px-4 py-2 border-white w-full text-lg placeholder:text-base'
-                        type="email" placeholder='email@example.com' />
+                        type="email"
+                        placeholder='email@example.com'
+                    />
 
                     <h3 className='text-lg font-medium mb-2'>Enter Password</h3>
-                    <input required
-                        value={password}
-                        onChange={(e) => {
-                            setPassword(e.target.value)
-                        }}
-                        className='bg-[#eeeeee] mb-7 rounded px-4 py-2 border-white w-full text-lg placeholder:text-base'
-                        type='password' placeholder='password' />
+                    <div className='relative mb-7'>
+                        <input
+                            required
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            className='bg-[#eeeeee] rounded px-4 py-2 pr-10 border-white w-full text-lg placeholder:text-base'
+                            type={showPassword ? 'text' : 'password'}
+                            placeholder='password'
+                        />
+                        <i
+                            className={`ri-${showPassword ? 'eye-off-fill' : 'eye-fill'} absolute right-3 top-3 text-xl text-gray-600 cursor-pointer`}
+                            onClick={() => setShowPassword(!showPassword)}
+                        ></i>
+                    </div>
 
                     <button
                         className='bg-[#111] mb-7 font-semibold text-white rounded px-4 py-2 border w-full text-lg placeholder:text-base'>
-                        Login</button>
+                        Login
+                    </button>
                 </form>
-                <p className='text-center'> Join a Fleet? <Link to='/captain-signup' className='text-blue-600'>Register as a Captain </Link></p>
 
+                <p className='text-center'>
+                    Join a Fleet? <Link to='/captain-signup' className='text-blue-600'>Register as a Captain</Link>
+                </p>
             </div>
+
             <div>
                 <Link
                     to='/login'
-                    className='bg-[#d5622d] flex items-center justify-center mb-5 font-semibold text-white rounded px-4 py-2 border w-full text-lg placeholder:text-base'>
-                    Sign in as User</Link>
+                    className='bg-yellow-500 flex items-center justify-center mb-5 font-semibold text-white rounded px-4 py-2 border w-full text-lg placeholder:text-base'>
+                    Sign in as User
+                </Link>
             </div>
         </div>
-
     )
 }
 
