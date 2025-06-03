@@ -1,5 +1,6 @@
 import React, { use, useRef } from 'react'
 import logo from '../assets/Ryder.png'
+import { Link } from 'react-router-dom'
 import tempImg from '../assets/uber.gif'
 import { useState } from 'react'
 import { useGSAP } from '@gsap/react'
@@ -90,7 +91,7 @@ const Home = () => {
     }
   }, [vehicleFound])
 
- useGSAP(function () {
+  useGSAP(function () {
     if (waitingForDriver) {
       gsap.to(waitingForDriverRef.current, {
         transform: 'translateY(0)'
@@ -100,13 +101,22 @@ const Home = () => {
         transform: 'translateY(100%)'
       })
     }
-  }, [waitingForDriver]) 
+  }, [waitingForDriver])
 
 
 
   return (
     <div className='h-screen relative overflow-hidden'>
       <img className="w-22 absolute left-5 top-5" src={logo} alt="" />
+      <div className='fixed p-4 top-0 flex items-center justify-end w-screen z-20'>
+        <Link
+          to='/user/logout'
+          className='flex items-center gap-2 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-full'
+          title="Logout"
+        >
+          <i className="ri-logout-box-r-line text-xl"></i>
+        </Link>
+      </div>
       {/* temporary image */}
 
       <div onClick={() => {
@@ -132,7 +142,7 @@ const Home = () => {
             submitHandler(e);
           }
           }>
-            <div className='line absolute h-15 w-0.75 top-[50%] bg-gray-900 rounded-full left-8'></div>
+            
             <input
               value={pickupLocation}
               onChange={(e) => {
@@ -146,6 +156,7 @@ const Home = () => {
               placeholder='Add your Pickup Location'
               required
             />
+            <div className='line absolute h-15 w-0.75 top-[40%] bg-gray-900 rounded-full left-8'></div>
             <input
               value={destination}
               onChange={(e) => {
@@ -179,7 +190,7 @@ const Home = () => {
         <LookingForDriver setVehicleFound={setVehicleFound} />
       </div>
       <div ref={waitingForDriverRef} className='w-full fixed z-10 bottom-0 translate-y-full bg-white p-3 py-6 px-3 pt-12'>
-        <WaitingForDriver waitingForDriver={waitingForDriver}  />
+        <WaitingForDriver waitingForDriver={waitingForDriver} />
       </div>
     </div>
   )

@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { CaptainDataContext } from '../context/CaptainContext'
 import axios from 'axios'
 import logo from '../assets/RyderC.png'
+import { toast } from 'react-hot-toast'
 
 const CaptainSignup = () => {
    const navigate = useNavigate()
@@ -41,9 +42,11 @@ const CaptainSignup = () => {
             const data = res.data
             setCaptain(data.captain)
             localStorage.setItem('token', data.token)
+            toast.success('Signup successful!')
             navigate('/captain-home')
          }
       } catch (error) {
+      toast.error(error.response?.data?.message || 'Signup failed')
          console.error(error.response?.data || error.message)
       }
 
