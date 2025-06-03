@@ -20,14 +20,14 @@ const ConfirmRide = (props) => {
           <div className='flex items-center gap-5 p-3 border-b-2 border-gray-300'>
             <i className=' text-xl ri-map-pin-2-fill' > </i>
             <div >
-              <h3 className='text-lg font-semibold '> 562/11-A</h3>
-              <p className='text-sm -mt-1 text-gray-600'>Kankariya Talab, Bhopal</p>
+              <h3 className='text-lg font-semibold '>123/1-B</h3>
+              <p className='text-sm -mt-1 text-gray-600'>Van Vihar, Bhopal</p>
             </div>
           </div>
           <div className='flex items-center gap-5 p-3'>
             <i className=' text-xl ri-currency-line' > </i>
             <div >
-              <h3 className='text-lg font-semibold '> $193.20</h3>
+              <h3 className='text-lg font-semibold '> ₹193.20</h3>
               <p className='text-sm -mt-1 text-gray-600'>Cash, Cash</p>
             </div>
           </div>
@@ -36,7 +36,7 @@ const ConfirmRide = (props) => {
         onClick={() => {props.setVehicleFound(true)
           props.setConfirmRidePanel(false)
         }}
-         className='w-full mt-5 bg-green-600 text-white font-semibold text-lg p-2 rounded-lg '>
+         className='w-full mt-5 bg-[#04665a] text-white font-semibold text-lg p-2 rounded-lg '>
           Confirm Ride
         </button>
       </div>
