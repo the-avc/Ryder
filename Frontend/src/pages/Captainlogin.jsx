@@ -72,7 +72,7 @@ const CaptainLogin = () => {
                     </div>
 
                     <button
-                        className='bg-[#111] mb-7 font-semibold text-white rounded px-4 py-2 border w-full text-lg placeholder:text-base'>
+                        className='bg-[#04665a] mb-7 font-semibold text-white rounded px-4 py-2 border w-full text-lg placeholder:text-base'>
                         Login
                     </button>
                 </form>
@@ -85,7 +85,7 @@ const CaptainLogin = () => {
             <div>
                 <Link
                     to='/login'
-                    className='bg-yellow-500 flex items-center justify-center mb-5 font-semibold text-white rounded px-4 py-2 border w-full text-lg placeholder:text-base'>
+                    className='bg-[#1ccbb6] flex items-center justify-center mb-5 font-semibold text-white rounded px-4 py-2 border w-full text-lg placeholder:text-base'>
                     Sign in as User
                 </Link>
             </div>

@@ -69,7 +69,7 @@ const UserLogin = () => {
                     </div>
 
                     <button
-                        className='bg-[#111] mb-7 font-semibold text-white rounded px-4 py-2 border w-full text-lg'>
+                        className='bg-[#04665a] mb-7 font-semibold text-white rounded px-4 py-2 w-full text-lg'>
                         Login
                     </button>
                 </form>
@@ -82,7 +82,7 @@ const UserLogin = () => {
             <div>
                 <Link
                     to='/captain-login'
-                    className='bg-green-600 flex items-center justify-center mb-5 font-semibold text-white rounded px-4 py-2 border w-full text-lg'>
+                    className='bg-[#1ccbb6]  flex items-center justify-center mb-5 font-semibold text-white rounded px-4 py-2 border w-full text-lg'>
                     Sign in as Captain
                 </Link>
             </div>

@@ -38,7 +38,7 @@ const CaptainRiding = () => {
       <div className='h-5/6' >
         <img className='h-full w-full object-cover' src={tempImg} alt="" />
       </div>
-      <div className='h-1/6  p-6  flex items-center relative justify-between bg-yellow-500'
+      <div className='h-1/6  p-6  flex items-center relative justify-between bg-[#78ece0]'
         onClick={() => {
           setFinishRidePanel(true)
         }}>
@@ -46,7 +46,7 @@ const CaptainRiding = () => {
 
         }}><i className=" text-3xl  text-black ri-arrow-up-wide-line"></i></h5>
         <h4 className='text-xl font-semibold'>4 KM away</h4>
-        <button className=' bg-green-600  text-white font-semibold text-lg p-3 px-10 rounded-lg '>Complete Ride</button>
+        <button className=' bg-[#04665a]  text-white font-semibold text-lg p-3 px-10 rounded-lg '>Complete Ride</button>
       </div>
       <div ref={finishRidePanelRef} className='w-full fixed  z-10 bottom-0 translate-y-full bg-white p-3 py-6 px-3 pt-12'>
         <FinishRide setFinishRidePanel={setFinishRidePanel} />

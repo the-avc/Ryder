@@ -99,7 +99,7 @@ const UserSignup = () => {
                </div>
 
                <button
-                  className='bg-[#111] font-semibold mb-3 text-white rounded px-4 py-2 border w-full text-lg'>
+                  className='bg-black font-semibold mb-3 text-white rounded px-4 py-2 border w-full text-lg'>
                   Signup
                </button>
             </form>
