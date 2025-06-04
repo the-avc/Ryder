@@ -161,7 +161,7 @@ const CaptainSignup = () => {
                </div>
 
                <button
-                  className='bg-[#111] font-semibold mb-3 text-white rounded px-4 py-2 border w-full text-lg placeholder:text-base'>
+                  className='bg-[#04665a] font-semibold mb-3 text-white rounded px-4 py-2 border w-full text-lg placeholder:text-base'>
                   Signup
                </button>
             </form>

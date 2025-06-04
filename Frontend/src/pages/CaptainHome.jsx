@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import tempImg from '../assets/uber.gif'
-import logo from '../assets/Ryder.png'
+import logo from '../assets/RyderC.png'
 import CaptainDetails from '../components/CaptainDetails'
 import RidePopup from '../components/RidePopup'
 import { useGSAP } from '@gsap/react'

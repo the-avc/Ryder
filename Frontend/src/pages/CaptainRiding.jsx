@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import tempImg from '../assets/uber.gif'
-import logo from '../assets/Ryder.png'
+import logo from '../assets/RyderC.png'
 import { Link } from 'react-router-dom'
 import 'remixicon/fonts/remixicon.css'
 import { useGSAP } from '@gsap/react'

@@ -1,4 +1,4 @@
-import React, { use, useRef } from 'react'
+import React, { use, useRef, useEffect } from 'react'
 import logo from '../assets/Ryder.png'
 import { Link } from 'react-router-dom'
 import tempImg from '../assets/uber.gif'
@@ -31,6 +31,7 @@ const Home = () => {
   const [confirmRidePanel, setConfirmRidePanel] = useState(false);
   const [waitingForDriver, setWaitingForDriver] = useState(false);
   const [vehicleFound, setVehicleFound] = useState(false);
+  const [selectedVehicle, setSelectedVehicle] = useState(null);
 
 
   const submitHandler = (e) => {
@@ -65,7 +66,6 @@ const Home = () => {
       })
     }
   }, [vehiclePanel])
-
 
   useGSAP(function () {
     if (confirmRidePanel) {
@@ -103,7 +103,20 @@ const Home = () => {
     }
   }, [waitingForDriver])
 
-
+  useEffect(() => {
+    let timer;
+    if (vehicleFound) {
+      timer = setTimeout(() => {
+        setVehicleFound(false);
+        setWaitingForDriver(true);
+      }, 3000); // 3 seconds delay
+    }
+    return () => {
+      if (timer) {
+        clearTimeout(timer);
+      }
+    };
+  }, [vehicleFound]);
 
   return (
     <div className='h-screen relative overflow-hidden'>
@@ -142,7 +155,7 @@ const Home = () => {
             submitHandler(e);
           }
           }>
-            
+
             <input
               value={pickupLocation}
               onChange={(e) => {
@@ -170,6 +183,24 @@ const Home = () => {
               placeholder='Enter your destination'
               required
             />
+            {panelOpen && (
+              <button
+                onClick={() => {
+                  if (pickupLocation && destination) {
+                    setPanelOpen(false);
+                    setVehiclePanel(true);
+                  }
+                }}
+                className={`w-full mt-4 py-3 rounded-lg transition-colors ${
+                  pickupLocation && destination
+                    ? 'bg-[#04665a] text-white cursor-pointer'
+                    : 'bg-gray-300 text-gray-500 cursor-not-allowed opacity-50'
+                }`}
+                disabled={!pickupLocation || !destination}
+              >
+                Continue
+              </button>
+            )}
           </form>
         </div>
         <div ref={panelRef} className='bg-white h-0'>
@@ -181,19 +212,28 @@ const Home = () => {
         </div>
       </div>
       <div ref={vehiclePanelRef} className='w-full fixed z-10 bottom-0 translate-y-full bg-white p-3 py-10 px-3 pt-12'>
-        <VehiclePanel setConfirmRidePanel={setConfirmRidePanel} setVehiclePanel={setVehiclePanel} />
+        <VehiclePanel 
+          setConfirmRidePanel={setConfirmRidePanel} 
+          setVehiclePanel={setVehiclePanel} 
+          setSelectedVehicle={setSelectedVehicle}
+        />
       </div>
       <div ref={confirmRidePanelRef} className='w-full fixed z-10 bottom-0 translate-y-full bg-white p-3 py-6 px-3 pt-12'>
-        <ConfirmRide setConfirmRidePanel={setConfirmRidePanel} setVehicleFound={setVehicleFound} />
+        <ConfirmRide
+          setConfirmRidePanel={setConfirmRidePanel}
+          setVehicleFound={setVehicleFound}
+          setVehiclePanel={setVehiclePanel}
+          selectedVehicle={selectedVehicle}
+        />
       </div>
       <div ref={vehicleFoundRef} className='w-full fixed z-10 bottom-0 translate-y-full bg-white p-3 py-6 px-3 pt-12'>
-        <LookingForDriver setVehicleFound={setVehicleFound} />
+        <LookingForDriver setVehicleFound={setVehicleFound} setWaitingForDriver={setWaitingForDriver} selectedVehicle={selectedVehicle} />
       </div>
       <div ref={waitingForDriverRef} className='w-full fixed z-10 bottom-0 translate-y-full bg-white p-3 py-6 px-3 pt-12'>
-        <WaitingForDriver waitingForDriver={waitingForDriver} />
+        <WaitingForDriver setWaitingForDriver={setWaitingForDriver} setVehiclePanel={setVehiclePanel} selectedVehicle={selectedVehicle} />
       </div>
     </div>
   )
 }
 
-export default Home 
+export default Home
