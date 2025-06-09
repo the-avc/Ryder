@@ -4,7 +4,7 @@ To set up and run the project locally, follow these steps:
 1. Clone the repository:
    ```sh
    git clone https://github.com/yourusername/Ryder.git
-   cd cses-web-dev
+   cd Ryder
    ```
 
 2. Install dependencies:
